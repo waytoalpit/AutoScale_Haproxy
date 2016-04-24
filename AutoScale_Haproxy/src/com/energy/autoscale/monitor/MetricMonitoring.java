@@ -100,7 +100,7 @@ public class MetricMonitoring {
 
 				Thread.currentThread().sleep(refreshTime);
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				continue;
 			}
 		}
@@ -130,7 +130,7 @@ public class MetricMonitoring {
 
 				Thread.currentThread().sleep(refreshTime);
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				continue;
 			}
 		}
