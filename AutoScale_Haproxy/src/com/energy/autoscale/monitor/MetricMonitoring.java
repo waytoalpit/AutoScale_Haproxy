@@ -14,17 +14,18 @@ public class MetricMonitoring {
 
 			doc = Jsoup.connect(url + ";csv").get();
 			String body = doc.body().text();
-
+			
+			System.out.println("**************************************");
 			// System.out.println(body);
 
 			int start = body.indexOf("haproxy_http,BACKEND");
 			int end = body.indexOf("stats,FRONTEND");
 			String backendServer = body.substring(start, end);
-			System.out.println("************" + backendServer);
+			//System.out.println("************" + backendServer);
 
 			String[] arr = backendServer.split(",");
 			int queueLength = Integer.parseInt(arr[2]);
-			int requestRate = Integer.parseInt(arr[4]);
+			int requestRate = Integer.parseInt(arr[33]);
 			int resposeTime = Integer.parseInt(arr[arr.length - 3]);
 
 			if (metric.equals("ql"))
