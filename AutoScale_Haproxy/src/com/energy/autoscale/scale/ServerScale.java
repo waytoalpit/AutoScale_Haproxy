@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class ServerScale {
 
@@ -20,6 +22,7 @@ public class ServerScale {
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
 			int count = 0;
+			boolean restart = false;
 
 			while ((sCurrentLine = reader.readLine()) != null) {
 
@@ -30,6 +33,7 @@ public class ServerScale {
 						System.out.println("Adding a new server...");
 						String modifiedLine = sCurrentLine.replace("#server app-server", "server app-server");
 						newContent = newContent + modifiedLine + "\r\n";
+						restart = true;
 						continue;
 					}
 				}
@@ -38,9 +42,15 @@ public class ServerScale {
 			}
 			reader.close();
 
-			writer = new FileWriter("/etc/haproxy/haproxy.cfg");
-			writer.write(newContent);
-			writer.close();
+			if (restart == true) {
+				writer = new FileWriter("/etc/haproxy/haproxy.cfg");
+				writer.write(newContent);
+				writer.close();
+
+				ServerScale scale = new ServerScale();
+				scale.restartHaproxy();
+				restart = false;
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -69,6 +79,7 @@ public class ServerScale {
 			boolean flag = true;
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
+			boolean restart = false;
 
 			while ((sCurrentLine = reader.readLine()) != null) {
 
@@ -82,6 +93,7 @@ public class ServerScale {
 						String modifiedLine = sCurrentLine.replace("server app-server", "#server app-server");
 						newContent = newContent + modifiedLine + "\r\n";
 						flag = false;
+						restart = true;
 					}
 					continue;
 				}
@@ -89,9 +101,15 @@ public class ServerScale {
 			}
 			reader.close();
 
-			writer = new FileWriter("/etc/haproxy/haproxy.cfg");
-			writer.write(newContent);
-			writer.close();
+			if (restart == true) {
+				writer = new FileWriter("/etc/haproxy/haproxy.cfg");
+				writer.write(newContent);
+				writer.close();
+
+				ServerScale scale = new ServerScale();
+				scale.restartHaproxy();
+				restart = false;
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -107,4 +125,15 @@ public class ServerScale {
 		}
 	}
 
+	public void restartHaproxy() {
+
+		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "sudo haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)");
+		pb.redirectErrorStream(true);
+		
+		try {
+			Process shell = pb.start();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}	
 }

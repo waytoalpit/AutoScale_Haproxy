@@ -7,21 +7,21 @@ import com.energy.autoscale.scale.ServerScale;
 
 public class MetricMonitoring {
 
-	public int parseCSV(String metric, String url) {
+	public int parseCSV(String metric, String url) throws Exception {
 		Document doc = null;
 		int ret = 0;
 		try {
 
 			doc = Jsoup.connect(url + ";csv").get();
 			String body = doc.body().text();
-			
-			System.out.println("**************************************");
-			// System.out.println(body);
+
+			System.out.println("*************************************************");
+			//System.out.println(body);
 
 			int start = body.indexOf("haproxy_http,BACKEND");
 			int end = body.indexOf("stats,FRONTEND");
 			String backendServer = body.substring(start, end);
-			//System.out.println("************" + backendServer);
+			// System.out.println("************" + backendServer);
 
 			String[] arr = backendServer.split(",");
 			int queueLength = Integer.parseInt(arr[2]);
@@ -41,7 +41,8 @@ public class MetricMonitoring {
 			System.out.println("Request Rate: " + requestRate);
 			System.out.println("Response Time: " + resposeTime);
 		} catch (Exception e) {
-			e.printStackTrace();
+			// e.printStackTrace();
+			throw new Exception();
 		}
 		return ret;
 	}
@@ -51,25 +52,27 @@ public class MetricMonitoring {
 		System.out.println("#################Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold);
 		while (true) {
-			int val = parseCSV("ql", url);
-
-			if (val == -1) {
-				System.out.println("no metric data found");
-				break;
-			}
-
-			ServerScale scale = new ServerScale();
-			if (val > maxThreshold)
-				scale.addServer();
-			else if (val < minThreshold)
-				scale.removeServer();
-			else
-				System.out.println("No additional server is required!");
 
 			try {
+				int val = parseCSV("ql", url);
+
+				if (val == -1) {
+					System.out.println("no metric data found");
+					break;
+				}
+
+				ServerScale scale = new ServerScale();
+				if (val > maxThreshold)
+					scale.addServer();
+				else if (val < minThreshold)
+					scale.removeServer();
+				else
+					System.out.println("No additional server is required!");
+
 				Thread.currentThread().sleep(refreshTime);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				// e.printStackTrace();
+				continue;
 			}
 		}
 	}
@@ -79,24 +82,24 @@ public class MetricMonitoring {
 		System.out.println("#################Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold);
 		while (true) {
-			int val = parseCSV("rr", url);
-
-			if (val == -1) {
-				System.out.println("no metric data found");
-				break;
-			}
-
-			ServerScale scale = new ServerScale();
-			if (val > maxThreshold)
-				scale.addServer();
-			else if (val < minThreshold)
-				scale.removeServer();
-			else
-				System.out.println("No additional server is required!");
-
 			try {
+				int val = parseCSV("rr", url);
+
+				if (val == -1) {
+					System.out.println("no metric data found");
+					break;
+				}
+
+				ServerScale scale = new ServerScale();
+				if (val > maxThreshold)
+					scale.addServer();
+				else if (val < minThreshold)
+					scale.removeServer();
+				else
+					System.out.println("No additional server is required!");
+
 				Thread.currentThread().sleep(refreshTime);
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
@@ -107,24 +110,25 @@ public class MetricMonitoring {
 		System.out.println("#################Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold);
 		while (true) {
-			int val = parseCSV("rt", url);
-
-			if (val == -1) {
-				System.out.println("no metric data found");
-				break;
-			}
-
-			ServerScale scale = new ServerScale();
-			if (val > maxThreshold)
-				scale.addServer();
-			else if (val < minThreshold)
-				scale.removeServer();
-			else
-				System.out.println("No additional server is required!");
 
 			try {
+				int val = parseCSV("rt", url);
+
+				if (val == -1) {
+					System.out.println("no metric data found");
+					break;
+				}
+
+				ServerScale scale = new ServerScale();
+				if (val > maxThreshold)
+					scale.addServer();
+				else if (val < minThreshold)
+					scale.removeServer();
+				else
+					System.out.println("No additional server is required!");
+
 				Thread.currentThread().sleep(refreshTime);
-			} catch (InterruptedException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
