@@ -127,7 +127,7 @@ public class ServerScale {
 
 	public void restartHaproxy() {
 
-		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "sudo haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)");
+		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "sudo service haproxy restart");
 		pb.redirectErrorStream(true);
 		
 		try {
