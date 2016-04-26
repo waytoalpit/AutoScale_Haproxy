@@ -127,7 +127,7 @@ public class MetricMonitoring {
 				if (val > maxThreshold)
 					scale.addServer();
 				else if (val < minThreshold){
-					if(prevRT>val)
+					if(prevRT>=val)
 						scale.removeServer();
 				}
 				else
