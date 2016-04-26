@@ -50,7 +50,6 @@ public class ServerScale {
 
 				ServerScale scale = new ServerScale();
 				scale.restartHaproxy();
-				restart = false;
 			}
 			else
 				System.out.println("Need to scale up but no more additional server present!");
@@ -114,7 +113,6 @@ public class ServerScale {
 
 				ServerScale scale = new ServerScale();
 				scale.restartHaproxy();
-				restart = false;
 			}
 			else
 				System.out.println("Need to scale down but no more additional server present!");
