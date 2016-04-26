@@ -51,6 +51,8 @@ public class ServerScale {
 				scale.restartHaproxy();
 				restart = false;
 			}
+			else
+				System.out.println("Need to scale but no more additional server present!");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -110,6 +112,8 @@ public class ServerScale {
 				scale.restartHaproxy();
 				restart = false;
 			}
+			else
+				System.out.println("Need to scale but no more additional server present!");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -127,7 +131,7 @@ public class ServerScale {
 
 	public void restartHaproxy() {
 
-		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "sudo service haproxy restart");
+		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)");
 		pb.redirectErrorStream(true);
 		
 		try {

@@ -15,7 +15,7 @@ public class MetricMonitoring {
 			doc = Jsoup.connect(url + ";csv").get();
 			String body = doc.body().text();
 
-			System.out.println("*************************************************");
+			System.out.println("*****************Performance monitoring**************************");
 			//System.out.println(body);
 
 			int start = body.indexOf("haproxy_http,BACKEND");
@@ -37,9 +37,6 @@ public class MetricMonitoring {
 			else
 				ret = -1;
 
-			System.out.println("Queue Length: " + queueLength);
-			System.out.println("Request Rate: " + requestRate);
-			System.out.println("Response Time: " + resposeTime);
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw new Exception();
@@ -49,13 +46,16 @@ public class MetricMonitoring {
 
 	public void monitorQueueLength(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
-		System.out.println("#################Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold);
+		System.out.println("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold+"##########");
+		
 		while (true) {
 
 			try {
 				int val = parseCSV("ql", url);
-
+				System.out.println("Queue Length: " + val);
+				
+				
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -79,12 +79,13 @@ public class MetricMonitoring {
 
 	public void monitorRequestRate(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
-		System.out.println("#################Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold);
+		System.out.println("###########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold+"##########");
 		while (true) {
 			try {
 				int val = parseCSV("rr", url);
-
+				System.out.println("Request Rate: " + val);
+				
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -108,13 +109,15 @@ public class MetricMonitoring {
 
 	public void monitorResponseTime(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
-		System.out.println("#################Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold);
+		System.out.println("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold+"##########");
+		int prevRT=Integer.MIN_VALUE;
 		while (true) {
 
 			try {
 				int val = parseCSV("rt", url);
-
+				System.out.println("Response Time: " + val);
+				
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -123,10 +126,13 @@ public class MetricMonitoring {
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
 					scale.addServer();
-				else if (val < minThreshold)
-					scale.removeServer();
+				else if (val < minThreshold){
+					if(prevRT>val)
+						scale.removeServer();
+				}
 				else
 					System.out.println("No additional server is required!");
+				prevRT=val;
 
 				Thread.currentThread().sleep(refreshTime);
 			} catch (Exception e) {
