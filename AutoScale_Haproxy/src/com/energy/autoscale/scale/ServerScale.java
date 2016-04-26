@@ -10,11 +10,13 @@ import java.io.InputStreamReader;
 
 public class ServerScale {
 
-	public void addServer() {
+	public boolean addServer() {
 
 		File file = null;
 		FileWriter writer = null;
 		BufferedReader reader = null;
+		boolean restart = false;
+
 		try {
 
 			String sCurrentLine;
@@ -22,15 +24,14 @@ public class ServerScale {
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
 			int count = 0;
-			boolean restart = false;
-
+			
 			while ((sCurrentLine = reader.readLine()) != null) {
 
 				if (sCurrentLine.contains("#server app-server")) {
 
 					if (count == 0) {
 						count = 1;
-						System.out.println("Adding a new server...");
+						System.out.println("A new server has been added!");
 						String modifiedLine = sCurrentLine.replace("#server app-server", "server app-server");
 						newContent = newContent + modifiedLine + "\r\n";
 						restart = true;
@@ -66,13 +67,17 @@ public class ServerScale {
 				ex.printStackTrace();
 			}
 		}
+		
+		return restart;
 	}
 
-	public void removeServer() {
+	public boolean removeServer() {
 
 		File file = null;
 		FileWriter writer = null;
 		BufferedReader reader = null;
+		boolean restart = false;
+
 		try {
 
 			String sCurrentLine;
@@ -81,8 +86,7 @@ public class ServerScale {
 			boolean flag = true;
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
-			boolean restart = false;
-
+			
 			while ((sCurrentLine = reader.readLine()) != null) {
 
 				if (sCurrentLine.contains("server app-server") && !sCurrentLine.contains("#server app-server")
@@ -91,7 +95,7 @@ public class ServerScale {
 						count = 0;
 						newContent = newContent + sCurrentLine + "\r\n";
 					} else {
-						System.out.println("Removing an existing server...");
+						System.out.println("An existing server has been removed!");
 						String modifiedLine = sCurrentLine.replace("server app-server", "#server app-server");
 						newContent = newContent + modifiedLine + "\r\n";
 						flag = false;
@@ -127,6 +131,8 @@ public class ServerScale {
 				ex.printStackTrace();
 			}
 		}
+		
+		return restart;
 	}
 
 	public void restartHaproxy() {

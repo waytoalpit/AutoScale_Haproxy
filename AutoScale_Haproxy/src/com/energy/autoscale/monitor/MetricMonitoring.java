@@ -69,14 +69,22 @@ public class MetricMonitoring {
 					System.out.println("no metric data found");
 					break;
 				}
-
+				
+				boolean serverAdded=false;
+				boolean serverRemoved=false;
+				
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
-					scale.addServer();
+					serverAdded=scale.addServer();
 				else if (val < minThreshold)
-					scale.removeServer();
+					serverRemoved=scale.removeServer();
 				else
 					System.out.println("No additional server is required!");
+				
+				if(serverAdded)
+					numServers++;
+				if(serverRemoved)
+					numServers--;
 
 				System.out.println("Active # of servers: "+numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
@@ -106,14 +114,22 @@ public class MetricMonitoring {
 					System.out.println("no metric data found");
 					break;
 				}
-
+				
+				boolean serverAdded=false;
+				boolean serverRemoved=false;
+				
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
-					scale.addServer();
+					serverAdded=scale.addServer();
 				else if (val < minThreshold)
-					scale.removeServer();
+					serverRemoved=scale.removeServer();
 				else
 					System.out.println("No additional server is required!");
+				
+				if(serverAdded)
+					numServers++;
+				if(serverRemoved)
+					numServers--;
 
 				System.out.println("Active # of servers: "+numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
@@ -133,6 +149,7 @@ public class MetricMonitoring {
 		int prevRT = Integer.MIN_VALUE;
 		int timeElapsed = 0;
 		int numServers=0;
+		
 		while (true) {
 
 			try {
@@ -147,16 +164,24 @@ public class MetricMonitoring {
 					break;
 				}
 
+				boolean serverAdded=false;
+				boolean serverRemoved=false;
+				
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
-					scale.addServer();
+					serverAdded=scale.addServer();
 				else if (val < minThreshold) {
 					if (prevRT >= val)
-						scale.removeServer();
+						serverAdded=scale.removeServer();
 				} else
 					System.out.println("No additional server is required!");
 				prevRT = val;
 
+				if(serverAdded)
+					numServers++;
+				if(serverRemoved)
+					numServers--;
+					
 				System.out.println("Active # of servers: "+numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
 				Thread.currentThread().sleep(refreshTime);
