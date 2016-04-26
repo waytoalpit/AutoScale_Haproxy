@@ -69,9 +69,9 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
-				System.out.println("Time elapsed since start: "+timeElapsed);
+				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime;
+				timeElapsed=timeElapsed+refreshTime/1000;
 			} catch (Exception e) {
 				// e.printStackTrace();
 				continue;
@@ -102,9 +102,9 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
-				System.out.println("Time elapsed since start: "+timeElapsed);
+				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime;
+				timeElapsed=timeElapsed+refreshTime/1000;
 			} catch (Exception e) {
 				//e.printStackTrace();
 				continue;
@@ -140,9 +140,9 @@ public class MetricMonitoring {
 					System.out.println("No additional server is required!");
 				prevRT=val;
 
-				System.out.println("Time elapsed since start: "+timeElapsed);
+				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime;
+				timeElapsed=timeElapsed+refreshTime/1000;
 			} catch (Exception e) {
 				//e.printStackTrace();
 				continue;
