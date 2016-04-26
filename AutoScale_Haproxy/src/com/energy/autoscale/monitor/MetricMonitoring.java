@@ -1,5 +1,6 @@
 package com.energy.autoscale.monitor;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -7,16 +8,19 @@ import com.energy.autoscale.scale.ServerScale;
 
 public class MetricMonitoring {
 
-	public int parseCSV(String metric, String url) throws Exception {
+	public int[] parseCSV(String metric, String url) throws Exception {
 		Document doc = null;
-		int ret = 0;
+		int[] ret = new int[2];
+		int numServers = 0;
+		
 		try {
 
 			doc = Jsoup.connect(url + ";csv").get();
 			String body = doc.body().text();
 
+			System.out.println();
 			System.out.println("*****************Performance monitoring**************************");
-			//System.out.println(body);
+			// System.out.println(body);
 
 			int start = body.indexOf("haproxy_http,BACKEND");
 			int end = body.indexOf("stats,FRONTEND");
@@ -28,15 +32,18 @@ public class MetricMonitoring {
 			int requestRate = Integer.parseInt(arr[33]);
 			int resposeTime = Integer.parseInt(arr[arr.length - 3]);
 
-			if (metric.equals("ql"))
-				ret = queueLength;
-			else if (metric.equals("rr"))
-				ret = requestRate;
-			else if (metric.equals("rt"))
-				ret = resposeTime;
-			else
-				ret = -1;
+			numServers=StringUtils.countMatches(body, "haproxy_http")-1;
 
+			if (metric.equals("ql"))
+				ret[0] = queueLength;
+			else if (metric.equals("rr"))
+				ret[0] = requestRate;
+			else if (metric.equals("rt"))
+				ret[0] = resposeTime;
+			else
+				ret[0] = -1;
+
+			ret[1]=numServers;
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw new Exception();
@@ -47,15 +54,17 @@ public class MetricMonitoring {
 	public void monitorQueueLength(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
 		System.out.println("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold+"##########");
-		int timeElapsed=0;
+				+ maxThreshold + "##########");
+		int timeElapsed = 0;
+		int numServers=0;
 		while (true) {
 
 			try {
-				int val = parseCSV("ql", url);
+				int[] ret = parseCSV("ql", url);
+				int val=ret[0];
+				numServers=ret[1];
 				System.out.println("Queue Length: " + val);
-				
-				
+
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -69,9 +78,10 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
-				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
+				System.out.println("Active # of servers: "+numServers);
+				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime/1000;
+				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
 				// e.printStackTrace();
 				continue;
@@ -82,13 +92,16 @@ public class MetricMonitoring {
 	public void monitorRequestRate(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
 		System.out.println("###########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold+"##########");
-		int timeElapsed=0;
+				+ maxThreshold + "##########");
+		int timeElapsed = 0;
+		int numServers=0;
 		while (true) {
 			try {
-				int val = parseCSV("rr", url);
+				int[] ret = parseCSV("rr", url);
+				int val=ret[0];
+				numServers=ret[1];
 				System.out.println("Request Rate: " + val);
-				
+
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -102,11 +115,12 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
-				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
+				System.out.println("Active # of servers: "+numServers);
+				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime/1000;
+				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 				continue;
 			}
 		}
@@ -115,15 +129,19 @@ public class MetricMonitoring {
 	public void monitorResponseTime(String url, int minThreshold, int maxThreshold, int refreshTime) {
 
 		System.out.println("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
-				+ maxThreshold+"##########");
-		int prevRT=Integer.MIN_VALUE;
-		int timeElapsed=0;
+				+ maxThreshold + "##########");
+		int prevRT = Integer.MIN_VALUE;
+		int timeElapsed = 0;
+		int numServers=0;
 		while (true) {
 
 			try {
-				int val = parseCSV("rt", url);
-				System.out.println("Response Time: " + val);
+				int[] ret = parseCSV("rt", url);
+				int val=ret[0];
+				numServers=ret[1];
 				
+				System.out.println("Response Time: " + val);
+
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
@@ -132,19 +150,19 @@ public class MetricMonitoring {
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
 					scale.addServer();
-				else if (val < minThreshold){
-					if(prevRT>=val)
+				else if (val < minThreshold) {
+					if (prevRT >= val)
 						scale.removeServer();
-				}
-				else
+				} else
 					System.out.println("No additional server is required!");
-				prevRT=val;
+				prevRT = val;
 
-				System.out.println("Time elapsed since start: "+timeElapsed+" seconds");
+				System.out.println("Active # of servers: "+numServers);
+				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
 				Thread.currentThread().sleep(refreshTime);
-				timeElapsed=timeElapsed+refreshTime/1000;
+				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
-				//e.printStackTrace();
+				// e.printStackTrace();
 				continue;
 			}
 		}
