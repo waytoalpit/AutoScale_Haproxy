@@ -48,7 +48,7 @@ public class MetricMonitoring {
 
 		System.out.println("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold+"##########");
-		
+		int timeElapsed=0;
 		while (true) {
 
 			try {
@@ -69,7 +69,9 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
+				System.out.println("Time elapsed since start: "+timeElapsed);
 				Thread.currentThread().sleep(refreshTime);
+				timeElapsed=timeElapsed+refreshTime;
 			} catch (Exception e) {
 				// e.printStackTrace();
 				continue;
@@ -81,6 +83,7 @@ public class MetricMonitoring {
 
 		System.out.println("###########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold+"##########");
+		int timeElapsed=0;
 		while (true) {
 			try {
 				int val = parseCSV("rr", url);
@@ -99,7 +102,9 @@ public class MetricMonitoring {
 				else
 					System.out.println("No additional server is required!");
 
+				System.out.println("Time elapsed since start: "+timeElapsed);
 				Thread.currentThread().sleep(refreshTime);
+				timeElapsed=timeElapsed+refreshTime;
 			} catch (Exception e) {
 				//e.printStackTrace();
 				continue;
@@ -112,6 +117,7 @@ public class MetricMonitoring {
 		System.out.println("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold+"##########");
 		int prevRT=Integer.MIN_VALUE;
+		int timeElapsed=0;
 		while (true) {
 
 			try {
@@ -134,7 +140,9 @@ public class MetricMonitoring {
 					System.out.println("No additional server is required!");
 				prevRT=val;
 
+				System.out.println("Time elapsed since start: "+timeElapsed);
 				Thread.currentThread().sleep(refreshTime);
+				timeElapsed=timeElapsed+refreshTime;
 			} catch (Exception e) {
 				//e.printStackTrace();
 				continue;

@@ -52,7 +52,7 @@ public class ServerScale {
 				restart = false;
 			}
 			else
-				System.out.println("Need to scale but no more additional server present!");
+				System.out.println("Need to scale up but no more additional server present!");
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -113,7 +113,7 @@ public class ServerScale {
 				restart = false;
 			}
 			else
-				System.out.println("Need to scale but no more additional server present!");
+				System.out.println("Need to scale down but no more additional server present!");
 
 		} catch (IOException e) {
 			e.printStackTrace();
