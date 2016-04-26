@@ -172,7 +172,7 @@ public class MetricMonitoring {
 					serverAdded=scale.addServer();
 				else if (val < minThreshold) {
 					if (prevRT >= val)
-						serverAdded=scale.removeServer();
+						serverRemoved=scale.removeServer();
 				} else
 					System.out.println("No additional server is required!");
 				prevRT = val;
