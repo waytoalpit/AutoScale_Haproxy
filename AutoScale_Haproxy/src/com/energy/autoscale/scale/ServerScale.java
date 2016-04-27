@@ -24,7 +24,7 @@ public class ServerScale {
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
 			int count = 0;
-			
+
 			while ((sCurrentLine = reader.readLine()) != null) {
 
 				if (sCurrentLine.contains("#server app-server")) {
@@ -50,8 +50,7 @@ public class ServerScale {
 
 				ServerScale scale = new ServerScale();
 				scale.restartHaproxy();
-			}
-			else
+			} else
 				System.out.println("Need to scale up but no more additional server present!");
 
 		} catch (IOException e) {
@@ -66,7 +65,7 @@ public class ServerScale {
 				ex.printStackTrace();
 			}
 		}
-		
+
 		return restart;
 	}
 
@@ -85,7 +84,7 @@ public class ServerScale {
 			boolean flag = true;
 			file = new File("/etc/haproxy/haproxy.cfg");
 			reader = new BufferedReader(new FileReader(file));
-			
+
 			while ((sCurrentLine = reader.readLine()) != null) {
 
 				if (sCurrentLine.contains("server app-server") && !sCurrentLine.contains("#server app-server")
@@ -113,8 +112,7 @@ public class ServerScale {
 
 				ServerScale scale = new ServerScale();
 				scale.restartHaproxy();
-			}
-			else
+			} else
 				System.out.println("Need to scale down but no more additional server present!");
 
 		} catch (IOException e) {
@@ -129,19 +127,19 @@ public class ServerScale {
 				ex.printStackTrace();
 			}
 		}
-		
+
 		return restart;
 	}
 
 	public void restartHaproxy() {
 
-		ProcessBuilder pb = new ProcessBuilder("bash", "-c", "haproxy -D -f /etc/haproxy/haproxy.cfg -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)");
-		pb.redirectErrorStream(true);
-		
 		try {
-			Process shell = pb.start();
-		} catch (IOException e) {
+			ProcessBuilder pb = new ProcessBuilder("/home/restart.sh");
+			Process p = pb.start(); // Start the process.
+			p.waitFor(); // Wait for the process to finish.
+			System.out.println("Script executed successfully");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 }
