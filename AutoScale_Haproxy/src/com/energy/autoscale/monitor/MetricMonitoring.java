@@ -178,6 +178,7 @@ public class MetricMonitoring {
 						serverRemoved=scale.removeServer();
 						prevRT=Integer.MIN_VALUE;
 						isRTSet=true;
+						prevRT=Integer.MIN_VALUE;
 					}
 				} else
 					System.out.println("No additional server is required!");
