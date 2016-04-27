@@ -169,8 +169,10 @@ public class MetricMonitoring {
 				boolean serverRemoved=false;
 				
 				ServerScale scale = new ServerScale();
-				if (val > maxThreshold)
+				if (val > maxThreshold){
 					serverAdded=scale.addServer();
+					isRTSet=true;
+				}
 				else if (val < minThreshold) {
 					if (prevRT >= val){
 						serverRemoved=scale.removeServer();
