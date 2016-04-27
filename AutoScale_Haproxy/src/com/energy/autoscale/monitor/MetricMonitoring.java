@@ -149,6 +149,7 @@ public class MetricMonitoring {
 		int prevRT = Integer.MIN_VALUE;
 		int timeElapsed = 0;
 		int numServers=0;
+		boolean isRTSet=false;
 		
 		while (true) {
 
@@ -168,14 +169,24 @@ public class MetricMonitoring {
 				boolean serverRemoved=false;
 				
 				ServerScale scale = new ServerScale();
-				if (val > maxThreshold)
+				if (val > maxThreshold){
 					serverAdded=scale.addServer();
+					isRTSet=true;
+					prevRT=Integer.MIN_VALUE;
+				}
 				else if (val < minThreshold) {
-					if (prevRT >= val)
+					if (prevRT >= val){
 						serverRemoved=scale.removeServer();
+						prevRT=Integer.MIN_VALUE;
+						isRTSet=true;
+					}
 				} else
 					System.out.println("No additional server is required!");
-				prevRT = val;
+				
+				if(!isRTSet)
+					prevRT = val;
+				else
+					isRTSet=false;
 
 				if(serverAdded)
 					numServers++;
