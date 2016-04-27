@@ -1,10 +1,12 @@
 package com.energy.autoscale.parser;
 
+import java.io.IOException;
+
 import com.energy.autoscale.monitor.MetricMonitoring;
 
 public class Inputparser {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		if (args.length != 5)
 			System.out.println("Invalid set of arguments! \n Please enter:  "

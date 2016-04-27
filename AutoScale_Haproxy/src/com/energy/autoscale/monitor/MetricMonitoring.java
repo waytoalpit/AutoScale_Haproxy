@@ -1,5 +1,13 @@
 package com.energy.autoscale.monitor;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -7,12 +15,32 @@ import org.jsoup.nodes.Document;
 import com.energy.autoscale.scale.ServerScale;
 
 public class MetricMonitoring {
+	
+	BufferedWriter objBufferedWriter = null;
+	public void init(){
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss");
+		Date date = new Date();
+		//System.out.println(dateFormat.format(date));
+
+		try {
+			String sFilePath = "./log/";
+			String sFileName=dateFormat.format(date)+".txt";
+			
+			File objOutFile = new File(sFilePath,sFileName);
+			FileWriter objFileWriter = new FileWriter(objOutFile );
+			objBufferedWriter = new BufferedWriter(objFileWriter);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public int[] parseCSV(String metric, String url) throws Exception {
 		Document doc = null;
 		int[] ret = new int[2];
 		int numServers = 0;
-		
+
 		try {
 
 			doc = Jsoup.connect(url + ";csv").get();
@@ -32,7 +60,7 @@ public class MetricMonitoring {
 			int requestRate = Integer.parseInt(arr[33]);
 			int resposeTime = Integer.parseInt(arr[arr.length - 3]);
 
-			numServers=StringUtils.countMatches(body, "haproxy_http")-1;
+			numServers = StringUtils.countMatches(body, "haproxy_http") - 1;
 
 			if (metric.equals("ql"))
 				ret[0] = queueLength;
@@ -43,7 +71,7 @@ public class MetricMonitoring {
 			else
 				ret[0] = -1;
 
-			ret[1]=numServers;
+			ret[1] = numServers;
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw new Exception();
@@ -51,43 +79,52 @@ public class MetricMonitoring {
 		return ret;
 	}
 
-	public void monitorQueueLength(String url, int minThreshold, int maxThreshold, int refreshTime) {
+	
+	public void monitorQueueLength(String url, int minThreshold, int maxThreshold, int refreshTime) throws IOException {
 
+		init();
 		System.out.println("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########");
 		int timeElapsed = 0;
-		int numServers=0;
+		int numServers = 0;
+		
+		objBufferedWriter.write("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold + "##########\n");
+		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
 		while (true) {
 
 			try {
 				int[] ret = parseCSV("ql", url);
-				int val=ret[0];
-				numServers=ret[1];
+				int val = ret[0];
+				numServers = ret[1];
 				System.out.println("Queue Length: " + val);
 
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
 				}
-				
-				boolean serverAdded=false;
-				boolean serverRemoved=false;
-				
+
+				boolean serverAdded = false;
+				boolean serverRemoved = false;
+
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
-					serverAdded=scale.addServer();
+					serverAdded = scale.addServer();
 				else if (val < minThreshold)
-					serverRemoved=scale.removeServer();
+					serverRemoved = scale.removeServer();
 				else
 					System.out.println("No additional server is required!");
-				
-				if(serverAdded)
+
+				if (serverAdded)
 					numServers++;
-				if(serverRemoved)
+				if (serverRemoved)
 					numServers--;
 
-				System.out.println("Active # of servers: "+numServers);
+				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
+				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.flush();
+				
 				Thread.currentThread().sleep(refreshTime);
 				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
@@ -95,44 +132,53 @@ public class MetricMonitoring {
 				continue;
 			}
 		}
+		objBufferedWriter.close();
 	}
 
-	public void monitorRequestRate(String url, int minThreshold, int maxThreshold, int refreshTime) {
+	public void monitorRequestRate(String url, int minThreshold, int maxThreshold, int refreshTime) throws IOException {
 
+		init();
 		System.out.println("###########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########");
 		int timeElapsed = 0;
-		int numServers=0;
+		int numServers = 0;
+		
+		objBufferedWriter.write("#########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold + "##########\n");
+		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
 		while (true) {
 			try {
 				int[] ret = parseCSV("rr", url);
-				int val=ret[0];
-				numServers=ret[1];
+				int val = ret[0];
+				numServers = ret[1];
 				System.out.println("Request Rate: " + val);
 
 				if (val == -1) {
 					System.out.println("no metric data found");
 					break;
 				}
-				
-				boolean serverAdded=false;
-				boolean serverRemoved=false;
-				
+
+				boolean serverAdded = false;
+				boolean serverRemoved = false;
+
 				ServerScale scale = new ServerScale();
 				if (val > maxThreshold)
-					serverAdded=scale.addServer();
+					serverAdded = scale.addServer();
 				else if (val < minThreshold)
-					serverRemoved=scale.removeServer();
+					serverRemoved = scale.removeServer();
 				else
 					System.out.println("No additional server is required!");
-				
-				if(serverAdded)
+
+				if (serverAdded)
 					numServers++;
-				if(serverRemoved)
+				if (serverRemoved)
 					numServers--;
 
-				System.out.println("Active # of servers: "+numServers);
+				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
+				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.flush();
+				
 				Thread.currentThread().sleep(refreshTime);
 				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
@@ -140,24 +186,29 @@ public class MetricMonitoring {
 				continue;
 			}
 		}
+		objBufferedWriter.close();
 	}
 
-	public void monitorResponseTime(String url, int minThreshold, int maxThreshold, int refreshTime) {
+	public void monitorResponseTime(String url, int minThreshold, int maxThreshold, int refreshTime) throws IOException {
 
+		init();
 		System.out.println("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########");
 		int prevRT = Integer.MIN_VALUE;
 		int timeElapsed = 0;
-		int numServers=0;
-		boolean isRTSet=false;
-		
+		int numServers = 0;
+		boolean isRTSet = false;
+
+		objBufferedWriter.write("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
+				+ maxThreshold + "##########\n");
+		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
 		while (true) {
 
 			try {
 				int[] ret = parseCSV("rt", url);
-				int val=ret[0];
-				numServers=ret[1];
-				
+				int val = ret[0];
+				numServers = ret[1];
+
 				System.out.println("Response Time: " + val);
 
 				if (val == -1) {
@@ -165,36 +216,38 @@ public class MetricMonitoring {
 					break;
 				}
 
-				boolean serverAdded=false;
-				boolean serverRemoved=false;
-				
+				boolean serverAdded = false;
+				boolean serverRemoved = false;
+
 				ServerScale scale = new ServerScale();
-				if (val > maxThreshold){
-					serverAdded=scale.addServer();
-					isRTSet=true;
-					prevRT=Integer.MIN_VALUE;
-				}
-				else if (val < minThreshold) {
-					if (prevRT >= val){
-						serverRemoved=scale.removeServer();
-						prevRT=Integer.MIN_VALUE;
-						isRTSet=true;
+				if (val > maxThreshold) {
+					serverAdded = scale.addServer();
+					isRTSet = true;
+					prevRT = Integer.MIN_VALUE;
+				} else if (val < minThreshold) {
+					if (prevRT >= val) {
+						serverRemoved = scale.removeServer();
+						prevRT = Integer.MIN_VALUE;
+						isRTSet = true;
 					}
 				} else
 					System.out.println("No additional server is required!");
-				
-				if(!isRTSet)
+
+				if (!isRTSet)
 					prevRT = val;
 				else
-					isRTSet=false;
+					isRTSet = false;
 
-				if(serverAdded)
+				if (serverAdded)
 					numServers++;
-				if(serverRemoved)
+				if (serverRemoved)
 					numServers--;
-					
-				System.out.println("Active # of servers: "+numServers);
+
+				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
+				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.flush();
+				
 				Thread.currentThread().sleep(refreshTime);
 				timeElapsed = timeElapsed + refreshTime / 1000;
 			} catch (Exception e) {
@@ -202,6 +255,7 @@ public class MetricMonitoring {
 				continue;
 			}
 		}
+		objBufferedWriter.close();
 	}
 
 }
