@@ -1,0 +1,258 @@
+#########Metric: Queue length, minThreshold: 100, maxThreshold: 500##########
+
+*****************Performance monitoring**************************
+Queue Length: 0
+Need to scale down but no more additional server present!
+Active # of servers: 1
+Time elapsed since start: 0 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 164
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 5 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 513
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 10 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 415
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 15 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 484
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 20 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 539
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 25 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 187
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 30 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 338
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 35 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 434
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 40 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 500
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 45 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 494
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 50 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 486
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 55 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 516
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 60 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 720
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 65 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 746
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 70 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 706
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 75 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 679
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 80 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 695
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 85 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 651
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 90 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 692
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 95 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 702
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 100 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 684
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 105 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 690
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 110 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 678
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 115 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 726
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 120 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 827
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 125 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 811
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 130 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 834
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 135 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 759
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 140 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 765
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 145 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 794
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 150 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 821
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 155 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 772
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 160 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 789
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 165 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 786
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 170 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 815
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 175 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 946
+Need to scale up but no more additional server present!
+Active # of servers: 3
+Time elapsed since start: 180 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 114
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 185 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 0
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 190 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 0
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 195 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 0
+Need to scale down but no more additional server present!
+Active # of servers: 1
+Time elapsed since start: 200 seconds
+
+*****************Performance monitoring**************************
+Queue Length: 0
+Need to scale down but no more additional server present!
+Active # of servers: 1
+Time elapsed since start: 205 seconds
+
