@@ -1,0 +1,109 @@
+###########Metric: Request Rate, minThreshold: 400, maxThreshold: 600##########
+
+*****************Performance monitoring**************************
+Request Rate: 818
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 0 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 723
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 10 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 690
+A new server has been added!
+Script executed successfully
+Active # of servers: 4
+Time elapsed since start: 20 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 687
+Need to scale up but no more additional server present!
+Active # of servers: 4
+Time elapsed since start: 30 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 643
+Need to scale up but no more additional server present!
+Active # of servers: 4
+Time elapsed since start: 40 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 650
+Need to scale up but no more additional server present!
+Active # of servers: 4
+Time elapsed since start: 50 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 651
+Need to scale up but no more additional server present!
+Active # of servers: 4
+Time elapsed since start: 60 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 640
+Need to scale up but no more additional server present!
+Active # of servers: 4
+Time elapsed since start: 70 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 582
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 80 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 547
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 90 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 489
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 100 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 423
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 110 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 414
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 120 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 403
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 130 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 377
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 140 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 362
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 150 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 336
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 160 seconds

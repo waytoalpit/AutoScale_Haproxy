@@ -1,0 +1,61 @@
+###########Metric: Request Rate, minThreshold: 400, maxThreshold: 600##########
+
+*****************Performance monitoring**************************
+Request Rate: 419
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 0 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 508
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 20 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 527
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 40 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 747
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 60 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 735
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 80 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 691
+A new server has been added!
+Script executed successfully
+Active # of servers: 4
+Time elapsed since start: 100 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 275
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 120 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 309
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 140 seconds
+
+*****************Performance monitoring**************************
+Request Rate: 317
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 160 seconds

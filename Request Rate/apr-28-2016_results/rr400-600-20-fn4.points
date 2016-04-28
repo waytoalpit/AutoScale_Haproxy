@@ -1,0 +1,12 @@
+#########Metric: Request Rate, minThreshold: 400, maxThreshold: 600##########
+#Time Elapsed	Num Servers
+0	4
+20	4
+40	4
+60	3
+80	2
+100	1
+120	1
+140	1
+160	1
+180	1
