@@ -1,0 +1,512 @@
+#########Metric: Response Time, minThreshold: 10, maxThreshold: 20##########
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 0 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 10 seconds
+
+*****************Performance monitoring**************************
+Response Time: 23
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 20 seconds
+
+*****************Performance monitoring**************************
+Response Time: 16
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 30 seconds
+
+*****************Performance monitoring**************************
+Response Time: 8
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 40 seconds
+
+*****************Performance monitoring**************************
+Response Time: 5
+Active # of servers: 2
+Time elapsed since start: 50 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+Active # of servers: 2
+Time elapsed since start: 60 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 70 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 80 seconds
+
+*****************Performance monitoring**************************
+Response Time: 29
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 90 seconds
+
+*****************Performance monitoring**************************
+Response Time: 0
+Active # of servers: 2
+Time elapsed since start: 100 seconds
+
+*****************Performance monitoring**************************
+Response Time: 0
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 110 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 120 seconds
+
+*****************Performance monitoring**************************
+Response Time: 29
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 130 seconds
+
+*****************Performance monitoring**************************
+Response Time: 12
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 140 seconds
+
+*****************Performance monitoring**************************
+Response Time: 16
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 150 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 160 seconds
+
+*****************Performance monitoring**************************
+Response Time: 22
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 170 seconds
+
+*****************Performance monitoring**************************
+Response Time: 4
+Active # of servers: 3
+Time elapsed since start: 180 seconds
+
+*****************Performance monitoring**************************
+Response Time: 8
+Active # of servers: 3
+Time elapsed since start: 190 seconds
+
+*****************Performance monitoring**************************
+Response Time: 11
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 200 seconds
+
+*****************Performance monitoring**************************
+Response Time: 13
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 210 seconds
+
+*****************Performance monitoring**************************
+Response Time: 13
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 220 seconds
+
+*****************Performance monitoring**************************
+Response Time: 13
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 230 seconds
+
+*****************Performance monitoring**************************
+Response Time: 13
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 240 seconds
+
+*****************Performance monitoring**************************
+Response Time: 13
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 250 seconds
+
+*****************Performance monitoring**************************
+Response Time: 10
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 260 seconds
+
+*****************Performance monitoring**************************
+Response Time: 10
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 270 seconds
+
+*****************Performance monitoring**************************
+Response Time: 9
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 280 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+Active # of servers: 2
+Time elapsed since start: 290 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 300 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 310 seconds
+
+*****************Performance monitoring**************************
+Response Time: 29
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 320 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+Active # of servers: 2
+Time elapsed since start: 330 seconds
+
+*****************Performance monitoring**************************
+Response Time: 12
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 340 seconds
+
+*****************Performance monitoring**************************
+Response Time: 16
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 350 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 360 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 370 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 380 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 390 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 400 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 410 seconds
+
+*****************Performance monitoring**************************
+Response Time: 21
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 420 seconds
+
+*****************Performance monitoring**************************
+Response Time: 10
+No additional server is required!
+Active # of servers: 3
+Time elapsed since start: 430 seconds
+
+*****************Performance monitoring**************************
+Response Time: 9
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 440 seconds
+
+*****************Performance monitoring**************************
+Response Time: 6
+Active # of servers: 2
+Time elapsed since start: 450 seconds
+
+*****************Performance monitoring**************************
+Response Time: 4
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 460 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 470 seconds
+
+*****************Performance monitoring**************************
+Response Time: 27
+A new server has been added!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 480 seconds
+
+*****************Performance monitoring**************************
+Response Time: 2
+Active # of servers: 2
+Time elapsed since start: 490 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 500 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 510 seconds
+
+*****************Performance monitoring**************************
+Response Time: 20
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 520 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 530 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 540 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 550 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 560 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 570 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 580 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 590 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 600 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 610 seconds
+
+*****************Performance monitoring**************************
+Response Time: 20
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 620 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 630 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 640 seconds
+
+*****************Performance monitoring**************************
+Response Time: 20
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 650 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 660 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 670 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 680 seconds
+
+*****************Performance monitoring**************************
+Response Time: 19
+No additional server is required!
+Active # of servers: 2
+Time elapsed since start: 690 seconds
+
+*****************Performance monitoring**************************
+Response Time: 22
+A new server has been added!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 700 seconds
+
+*****************Performance monitoring**************************
+Response Time: 22
+A new server has been added!
+Script executed successfully
+Active # of servers: 4
+Time elapsed since start: 710 seconds
+
+*****************Performance monitoring**************************
+Response Time: 9
+Active # of servers: 4
+Time elapsed since start: 720 seconds
+
+*****************Performance monitoring**************************
+Response Time: 11
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 730 seconds
+
+*****************Performance monitoring**************************
+Response Time: 10
+No additional server is required!
+Active # of servers: 4
+Time elapsed since start: 740 seconds
+
+*****************Performance monitoring**************************
+Response Time: 9
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 3
+Time elapsed since start: 750 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+Active # of servers: 3
+Time elapsed since start: 760 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 2
+Time elapsed since start: 770 seconds
+
+*****************Performance monitoring**************************
+Response Time: 8
+Active # of servers: 2
+Time elapsed since start: 780 seconds
+
+*****************Performance monitoring**************************
+Response Time: 7
+An existing server has been removed!
+Script executed successfully
+Active # of servers: 1
+Time elapsed since start: 790 seconds
+
+*****************Performance monitoring**************************
+Response Time: 17
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 800 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 810 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 820 seconds
+
+*****************Performance monitoring**************************
+Response Time: 18
+No additional server is required!
+Active # of servers: 1
+Time elapsed since start: 830 seconds
