@@ -8,6 +8,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.xml.ws.Response;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,7 +40,7 @@ public class MetricMonitoring {
 
 	public int[] parseCSV(String metric, String url) throws Exception {
 		Document doc = null;
-		int[] ret = new int[2];
+		int[] ret = new int[4];
 		int numServers = 0;
 
 		try {
@@ -59,19 +61,18 @@ public class MetricMonitoring {
 			int queueLength = Integer.parseInt(arr[2]);
 			int requestRate = Integer.parseInt(arr[33]);
 			int resposeTime = Integer.parseInt(arr[arr.length - 3]);
+			
+			System.out.println("Request Rate: " + requestRate);
+			System.out.println("Queue Length: " + queueLength);
+			System.out.println("Response Time: " + resposeTime);
 
 			numServers = StringUtils.countMatches(body, "haproxy_http") - 1;
 
-			if (metric.equals("ql"))
-				ret[0] = queueLength;
-			else if (metric.equals("rr"))
-				ret[0] = requestRate;
-			else if (metric.equals("rt"))
-				ret[0] = resposeTime;
-			else
-				ret[0] = -1;
-
-			ret[1] = numServers;
+			ret[0]=requestRate;
+			ret[1]=queueLength;
+			ret[2]=resposeTime;
+			ret[3]=numServers;
+			
 		} catch (Exception e) {
 			// e.printStackTrace();
 			throw new Exception();
@@ -90,14 +91,14 @@ public class MetricMonitoring {
 		
 		objBufferedWriter.write("#########Metric: Queue length, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########\n");
-		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
+		objBufferedWriter.write("#Request Rate\tQueuelength\tResponse Time\tTime Elapsed\tNum Servers\n");
 		while (true) {
 
 			try {
 				int[] ret = parseCSV("ql", url);
-				int val = ret[0];
-				numServers = ret[1];
-				System.out.println("Queue Length: " + val);
+				int val = ret[1];
+				numServers = ret[3];
+				//System.out.println("Queue Length: " + val);
 
 				if (val == -1) {
 					System.out.println("no metric data found");
@@ -122,7 +123,7 @@ public class MetricMonitoring {
 
 				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
-				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.write(ret[0]+"\t"+ret[1]+"\t"+ret[2]+"\t"+timeElapsed+"\t"+numServers+"\n");
 				objBufferedWriter.flush();
 				
 				Thread.currentThread().sleep(refreshTime);
@@ -145,13 +146,13 @@ public class MetricMonitoring {
 		
 		objBufferedWriter.write("#########Metric: Request Rate, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########\n");
-		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
+		objBufferedWriter.write("#Request Rate\tQueuelength\tResponse Time\tTime Elapsed\tNum Servers\n");
 		while (true) {
 			try {
 				int[] ret = parseCSV("rr", url);
 				int val = ret[0];
-				numServers = ret[1];
-				System.out.println("Request Rate: " + val);
+				numServers = ret[3];
+				//System.out.println("Request Rate: " + val);
 
 				if (val == -1) {
 					System.out.println("no metric data found");
@@ -176,7 +177,7 @@ public class MetricMonitoring {
 
 				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
-				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.write(ret[0]+"\t"+ret[1]+"\t"+ret[2]+"\t"+timeElapsed+"\t"+numServers+"\n");
 				objBufferedWriter.flush();
 				
 				Thread.currentThread().sleep(refreshTime);
@@ -201,15 +202,14 @@ public class MetricMonitoring {
 
 		objBufferedWriter.write("#########Metric: Response Time, minThreshold: " + minThreshold + ", maxThreshold: "
 				+ maxThreshold + "##########\n");
-		objBufferedWriter.write("#Time Elapsed\tNum Servers\n");
+		objBufferedWriter.write("#Request Rate\tQueuelength\tResponse Time\tTime Elapsed\tNum Servers\n");
 		while (true) {
 
 			try {
 				int[] ret = parseCSV("rt", url);
-				int val = ret[0];
-				numServers = ret[1];
-
-				System.out.println("Response Time: " + val);
+				int val = ret[2];
+				numServers = ret[3];
+				//System.out.println("Response Time: " + val);
 
 				if (val == -1) {
 					System.out.println("no metric data found");
@@ -245,7 +245,7 @@ public class MetricMonitoring {
 
 				System.out.println("Active # of servers: " + numServers);
 				System.out.println("Time elapsed since start: " + timeElapsed + " seconds");
-				objBufferedWriter.write(timeElapsed+"\t"+numServers+"\n");
+				objBufferedWriter.write(ret[0]+"\t"+ret[1]+"\t"+ret[2]+"\t"+timeElapsed+"\t"+numServers+"\n");
 				objBufferedWriter.flush();
 				
 				Thread.currentThread().sleep(refreshTime);
