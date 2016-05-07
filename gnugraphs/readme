@@ -1,0 +1,4 @@
+plot "rr.txt" using 4:1 title "Request Rate" with linespoints, "rr.txt" using 4:2 title "Queue length" with linespoints,"rr.txt" using 4:3 title "Response Rate" with linespoints
+
+
+plot "rr.txt" using 4:5 title "Request Rate" with linespoints, "ql.txt" using 4:5 title "Queue Length" with linespoints, "rt_all_metrics.txt" using 4:5 title "Response Time" with linespoints
